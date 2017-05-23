@@ -1,16 +1,16 @@
 (function($) { "use strict";
 
-	
-	//Home Sections fit screen	
-				
-	$(function(){"use strict";
-		$('.work-top').css({'height':($(window).height())+'px'});
-		$(window).resize(function(){
-		$('.work-top').css({'height':($(window).height())+'px'});
-		});
-	});
 
-	
+//Home Sections fit screen
+
+$(function(){"use strict";
+	$('.work-top').css({'height':($(window).height())+'px'});
+	$(window).resize(function(){
+	$('.work-top').css({'height':($(window).height())+'px'});
+	});
+});
+
+
 	//Home Scroll
 
 jQuery(document).ready(function($){
@@ -18,9 +18,9 @@ jQuery(document).ready(function($){
 	var	scaleSpeed = 0.3,
 	//change this value if you want to set a different initial opacity for the .cd-half-block
 		boxShadowOpacityInitialValue = 0.7,
-		animating = false; 
-	
-	//check the media query 
+		animating = false;
+
+	//check the media query
 	var MQ = window.getComputedStyle(document.querySelector('body'), '::before').getPropertyValue('content').replace(/"/g, "").replace(/'/g, "");
 	$(window).on('resize', function(){
 		MQ = window.getComputedStyle(document.querySelector('body'), '::before').getPropertyValue('content').replace(/"/g, "").replace(/'/g, "");
@@ -54,18 +54,18 @@ jQuery(document).ready(function($){
 			//if on desktop screen - animate sections
 			(!window.requestAnimationFrame) ? animateSection() : window.requestAnimationFrame(animateSection);
 		} else {
-			//on mobile - remove the style added by jQuery 
+			//on mobile - remove the style added by jQuery
 			$('.cd-section').find('.cd-block').removeAttr('style').find('.cd-half-block').removeAttr('style');
 		}
 		//update navigation arrows visibility
 		checkNavigation();
 	}
-	
+
 	function animateSection () {
 		var scrollTop = $(window).scrollTop(),
 			windowHeight = $(window).height(),
 			windowWidth = $(window).width();
-		
+
 		$('.cd-section').each(function(){
 			var actualBlock = $(this),
 				offset = scrollTop - actualBlock.offset().top,
@@ -96,9 +96,9 @@ jQuery(document).ready(function($){
 				//section not visible anymore
 				opacity = 0;
 			}
-			
+
 			boxShadowOpacity = parseInt(translate.replace('px', ''))*boxShadowOpacityInitialValue/20;
-			
+
 			//translate/scale section blocks
 			scaleBlock(actualBlock.find('.cd-block'), scale, opacity);
 
@@ -106,18 +106,18 @@ jQuery(document).ready(function($){
 			var directionSecondChild = ( actualBlock.is(':nth-of-type(even)') ) ? '+': '-';
 			if(actualBlock.find('.cd-half-block')) {
 				translateBlock(actualBlock.find('.cd-half-block').eq(0), directionFirstChild+translate, boxShadowOpacity);
-				translateBlock(actualBlock.find('.cd-half-block').eq(1), directionSecondChild+translate, boxShadowOpacity);	
+				translateBlock(actualBlock.find('.cd-half-block').eq(1), directionSecondChild+translate, boxShadowOpacity);
 			}
 			//this is used to navigate through the sections
-			( offset >= 0 && offset < windowHeight ) ? actualBlock.addClass('is-visible') : actualBlock.removeClass('is-visible');		
+			( offset >= 0 && offset < windowHeight ) ? actualBlock.addClass('is-visible') : actualBlock.removeClass('is-visible');
 		});
 	}
 
 	function translateBlock(elem, value, shadow) {
 		var position = Math.ceil(Math.abs(value.replace('px', '')));
-		
+
 		if( position >= $(window).width()/2 ) {
-			shadow = 0;	
+			shadow = 0;
 		} else if ( position > 20 ) {
 			shadow = boxShadowOpacityInitialValue;
 		}
@@ -171,15 +171,15 @@ jQuery(document).ready(function($){
 	}
 });
 
-	
-	//Navigation	
+
+	//Navigation
 
 	$('ul.slimmenu').on('click',function(){
-	var width = $(window).width(); 
-	if ((width <= 1200)){ 
-		$(this).slideToggle(); 
-	}	
-	});				
+	var width = $(window).width();
+	if ((width <= 1200)){
+		$(this).slideToggle();
+	}
+	});
 	$('ul.slimmenu').slimmenu(
 	{
 		resizeWidth: '1200',
@@ -188,8 +188,8 @@ jQuery(document).ready(function($){
 		animSpeed:'medium',
 		indentChildren: true,
 		childrenIndenter: '&raquo;'
-	});	
-	
+	});
+
 	$(document).ready(function(){"use strict";
 		$(".scroll").click(function(event){
 
@@ -204,23 +204,23 @@ jQuery(document).ready(function($){
 			$('html, body').animate({scrollTop:target_top}, 1000);
 		});
 	});
-	
+
 
 
 	/* Portfolio Sorting */
 
 	jQuery(document).ready(function($){
-		(function ($) { 
-		
-		
+		(function ($) {
+
+
 			var container = $('#projects-grid');
-			
-			
-			function getNumbColumns() { 
-				var winWidth = $(window).width(), 
+
+
+			function getNumbColumns() {
+				var winWidth = $(window).width(),
 					columnNumb = 1;
-				
-				
+
+
 				if (winWidth > 1500) {
 					columnNumb = 4;
 				} else if (winWidth > 1200) {
@@ -232,63 +232,63 @@ jQuery(document).ready(function($){
 				} else if (winWidth > 300) {
 					columnNumb = 1;
 				}
-				
+
 				return columnNumb;
 			}
-			
-			
-			function setColumnWidth() { 
-				var winWidth = $(window).width(), 
-					columnNumb = getNumbColumns(), 
+
+
+			function setColumnWidth() {
+				var winWidth = $(window).width(),
+					columnNumb = getNumbColumns(),
 					postWidth = Math.floor(winWidth / columnNumb);
 
 			}
-			
-			$('#portfolio-filter #filter a').click(function () { 
+
+			$('#portfolio-filter #filter a').click(function () {
 				var selector = $(this).attr('data-filter');
-				
+
 				$(this).parent().parent().find('a').removeClass('current');
 				$(this).addClass('current');
-				
-				container.isotope( { 
-					filter : selector 
+
+				container.isotope( {
+					filter : selector
 				});
-				
-				setTimeout(function () { 
+
+				setTimeout(function () {
 					reArrangeProjects();
 				}, 300);
-				
-				
+
+
 				return false;
 			});
-			
-			function reArrangeProjects() { 
+
+			function reArrangeProjects() {
 				setColumnWidth();
 				container.isotope('reLayout');
 			}
-			
-			
-			container.imagesLoaded(function () { 
+
+
+			container.imagesLoaded(function () {
 				setColumnWidth();
-				
-				
-				container.isotope( { 
-					itemSelector : '.portfolio-box-1', 
-					layoutMode : 'masonry', 
-					resizable : false 
+
+
+				container.isotope( {
+					itemSelector : '.portfolio-box-1',
+					layoutMode : 'masonry',
+					resizable : false
 				} );
 			} );
-			
-			
-		
-			
-		
-			$(window).on('debouncedresize', function () { 
+
+
+
+
+
+			$(window).on('debouncedresize', function () {
 				reArrangeProjects();
-				
+
 			} );
-			
-		
+
+
 		} )(jQuery);
 	} );
 
@@ -297,76 +297,42 @@ jQuery(document).ready(function($){
 
 
 	/* DebouncedResize Function */
-		(function ($) { 
-			var $event = $.event, 
-				$special, 
+		(function ($) {
+			var $event = $.event,
+				$special,
 				resizeTimeout;
-			
-			
-			$special = $event.special.debouncedresize = { 
-				setup : function () { 
+
+
+			$special = $event.special.debouncedresize = {
+				setup : function () {
 					$(this).on('resize', $special.handler);
-				}, 
-				teardown : function () { 
+				},
+				teardown : function () {
 					$(this).off('resize', $special.handler);
-				}, 
-				handler : function (event, execAsap) { 
-					var context = this, 
-						args = arguments, 
-						dispatch = function () { 
+				},
+				handler : function (event, execAsap) {
+					var context = this,
+						args = arguments,
+						dispatch = function () {
 							event.type = 'debouncedresize';
-							
+
 							$event.dispatch.apply(context, args);
 						};
-					
-					
+
+
 					if (resizeTimeout) {
 						clearTimeout(resizeTimeout);
 					}
-					
-					
+
+
 					execAsap ? dispatch() : resizeTimeout = setTimeout(dispatch, $special.threshold);
-				}, 
-				threshold : 150 
+				},
+				threshold : 150
 			};
 		} )(jQuery);
 
 
 
 
-	
-  })(jQuery); 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
 
-
-
-
-
-	
+  })(jQuery);

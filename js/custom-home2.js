@@ -1,16 +1,16 @@
 (function($) { "use strict";
 
-	
-	//Home Sections fit screen	
-				
+
+	//Home Sections fit screen
+
 	$(function(){"use strict";
 		$('.home-top-slider').css({'height':($(window).height())+'px'});
 		$(window).resize(function(){
 		$('.home-top-slider').css({'height':($(window).height())+'px'});
 		});
 	});
-	
-	
+
+
 	//Home Background Slider
 
             $.mbBgndGallery.buildGallery({
@@ -45,7 +45,7 @@
                 onPrev:function(opt){}
             });
 
-			
+
 	//Home Scroll
 
 jQuery(document).ready(function($){
@@ -53,9 +53,9 @@ jQuery(document).ready(function($){
 	var	scaleSpeed = 0.3,
 	//change this value if you want to set a different initial opacity for the .cd-half-block
 		boxShadowOpacityInitialValue = 0.7,
-		animating = false; 
-	
-	//check the media query 
+		animating = false;
+
+	//check the media query
 	var MQ = window.getComputedStyle(document.querySelector('body'), '::before').getPropertyValue('content').replace(/"/g, "").replace(/'/g, "");
 	$(window).on('resize', function(){
 		MQ = window.getComputedStyle(document.querySelector('body'), '::before').getPropertyValue('content').replace(/"/g, "").replace(/'/g, "");
@@ -89,18 +89,18 @@ jQuery(document).ready(function($){
 			//if on desktop screen - animate sections
 			(!window.requestAnimationFrame) ? animateSection() : window.requestAnimationFrame(animateSection);
 		} else {
-			//on mobile - remove the style added by jQuery 
+			//on mobile - remove the style added by jQuery
 			$('.cd-section').find('.cd-block').removeAttr('style').find('.cd-half-block').removeAttr('style');
 		}
 		//update navigation arrows visibility
 		checkNavigation();
 	}
-	
+
 	function animateSection () {
 		var scrollTop = $(window).scrollTop(),
 			windowHeight = $(window).height(),
 			windowWidth = $(window).width();
-		
+
 		$('.cd-section').each(function(){
 			var actualBlock = $(this),
 				offset = scrollTop - actualBlock.offset().top,
@@ -131,9 +131,9 @@ jQuery(document).ready(function($){
 				//section not visible anymore
 				opacity = 0;
 			}
-			
+
 			boxShadowOpacity = parseInt(translate.replace('px', ''))*boxShadowOpacityInitialValue/20;
-			
+
 			//translate/scale section blocks
 			scaleBlock(actualBlock.find('.cd-block'), scale, opacity);
 
@@ -141,18 +141,18 @@ jQuery(document).ready(function($){
 			var directionSecondChild = ( actualBlock.is(':nth-of-type(even)') ) ? '+': '-';
 			if(actualBlock.find('.cd-half-block')) {
 				translateBlock(actualBlock.find('.cd-half-block').eq(0), directionFirstChild+translate, boxShadowOpacity);
-				translateBlock(actualBlock.find('.cd-half-block').eq(1), directionSecondChild+translate, boxShadowOpacity);	
+				translateBlock(actualBlock.find('.cd-half-block').eq(1), directionSecondChild+translate, boxShadowOpacity);
 			}
 			//this is used to navigate through the sections
-			( offset >= 0 && offset < windowHeight ) ? actualBlock.addClass('is-visible') : actualBlock.removeClass('is-visible');		
+			( offset >= 0 && offset < windowHeight ) ? actualBlock.addClass('is-visible') : actualBlock.removeClass('is-visible');
 		});
 	}
 
 	function translateBlock(elem, value, shadow) {
 		var position = Math.ceil(Math.abs(value.replace('px', '')));
-		
+
 		if( position >= $(window).width()/2 ) {
-			shadow = 0;	
+			shadow = 0;
 		} else if ( position > 20 ) {
 			shadow = boxShadowOpacityInitialValue;
 		}
@@ -206,15 +206,15 @@ jQuery(document).ready(function($){
 	}
 });
 
-	
-	//Navigation	
+
+	//Navigation
 
 	$('ul.slimmenu').on('click',function(){
-	var width = $(window).width(); 
-	if ((width <= 1200)){ 
-		$(this).slideToggle(); 
-	}	
-	});				
+	var width = $(window).width();
+	if ((width <= 1200)){
+		$(this).slideToggle();
+	}
+	});
 	$('ul.slimmenu').slimmenu(
 	{
 		resizeWidth: '1200',
@@ -223,8 +223,8 @@ jQuery(document).ready(function($){
 		animSpeed:'medium',
 		indentChildren: true,
 		childrenIndenter: '&raquo;'
-	});	
-	
+	});
+
 	$(document).ready(function(){"use strict";
 		$(".scroll").click(function(event){
 
@@ -239,49 +239,18 @@ jQuery(document).ready(function($){
 			$('html, body').animate({scrollTop:target_top}, 700);
 		});
 	});
-	
-	
+
+
 	//Tooltip
 
 	$(document).ready(function() {
 		$(".tipped").tipper();
-	});	
 
 
-
-	
-  })(jQuery); 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+	});
 
 
 
 
 
-	
+})(jQuery);

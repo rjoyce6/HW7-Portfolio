@@ -426,7 +426,11 @@ ul.slimmenu.collapsed li > ul {
 
 
 
-
+/* Text-link
+================================================== */
+.text-link {
+	color: #777777;
+}
 
 /* #Slider
 ================================================== */
@@ -1371,15 +1375,13 @@ a.scroll-down.scroll-yt {
 
 /* #portfolio
 ================================================== */
-
 .work-top {
 	position:relative;
 	width:100%;
 	overflow:hidden;
-	background:url('../images/portfolio/work-top.jpg') no-repeat center center;
+	/*background:url('../images/portfolio/work-top.jpg') no-repeat center center;*/
 	background-size:cover;
 }
-
 
 .big-text-portfolio-top {
 	position: absolute;
