@@ -400,7 +400,7 @@ ul.slimmenu.collapsed li > ul {
 	position:relative;
 	width:100%;
 }
-.section-big-header-text h2{
+.section-big-header-text h2, .section-header-text-left h2{
 	padding-bottom:30px;
 	text-align:left;
 	color: #212121;
@@ -937,7 +937,7 @@ a.scroll-down.scroll-yt {
 .cd-half-block:nth-of-type(2) {
   padding: 4em 10%;
 }
-.cd-half-block h2 {
+.cd-half-block h2 , .section-header-text-left h2, .section-header-text-left h2{
 	text-align:left;
 	padding-bottom:30px;
 }
@@ -1390,7 +1390,7 @@ a.scroll-down.scroll-yt {
 	text-align:left;
 	z-index: 20;
 }
-.big-text-portfolio-top h2{
+.big-text-portfolio-top h2, .section-header-text-left h2{
 	text-align:left;
 }
 .big-text-portfolio-top p{
@@ -2911,6 +2911,9 @@ a.scroll-down.scroll-yt {
 	padding-bottom:30px;
 }
 
+#contact {
+	padding-bottom: 50px;
+}
 
 /* #footer
 ================================================== */
